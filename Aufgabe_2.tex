@@ -12,10 +12,21 @@
 \usepackage{amsfonts}
 
 \title{BuK Abgabe 2 | Gruppe 17}
-\author{Malte Meng (354529) , Sebastian Witt (354738)}
+\author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
 \begin{document}
 	\maketitle 
 	\section[a 2.1]{Aufgabe 2.1}
 	Gödelnummer $\langle M\rangle$:\\
 	$\langle M\rangle = 111 0101000100100 11 010010101000 11 01000100100010 11 00010101010 11 000100100010010 111 $
+	\section[a 2.2]{Aufgabe 2.2}
+	Der Speicherbedarf ist auf die Länge der Eingabe begrenzt.\\
+	Annahme I: "Es darf nicht zu Wiederholungen kommen, da die Maschine sonst nicht hält"\\
+	I $\implies$ TM kann nur einmal in jedem Zustand sein.\\\\
+	II: Zustände des Bandes: $|\Gamma|^{s(n)}$ \\
+	III: Zustände der TM (-1 für Endzustand): $(|Q| - 1)$\\
+	IV: Lesekopfpositionen: $s(n)$\\\\
+	Das Produkt dieser Zustände sind die maximal Möglichen Konfigurationen einer haltenden TM. Zuzüglich des Haltens am Ende.(+1)\\\\
+	$|II \cap III \cap IV| +1 = (|Q| - 1) * |\Gamma|^{s(n)} * s(n)+1$
+	\quad$\square$\\
+	
 \end{document}
