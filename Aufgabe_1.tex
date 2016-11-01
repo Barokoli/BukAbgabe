@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{BuK Abgabe 1 | Gruppe 17}
+\author{Malte Meng (354529) , Sebastian Witt (354738)}
+\begin{document}
+	\maketitle 
+	\section[a 1.1]{Aufgabe 1.1}
+	\begin{enumerate} [label=\alph*.]
+		\item \textbf{Das Teilsummenproblem:}\\
+		L = \{(M,b) | M $\subset \mathbb{N} , b \in \mathbb{N} , \exists P \in Pot(M), n \in \mathbb{N}, n = |P|, \big(\sum_{i=1}^{n} P_i \big)= b$\}
+		\item \textbf{Cliquenproblem:}\\
+		$L_{Clique} = \{ (G,b)\ |\ b \in \mathbb{N},G = (V,E),\exists v \in V, n(v) = b, n \in V \rightarrow \mathbb{N}, n \equiv Anzahl\ der\ Nachbarn\ von\ v \}$
+	\end{enumerate}
+	\section[a 1.2]{Aufgabe 1.2}
+	Geben Sie zu der folgenden Turingmaschine M an, welche Konfigurationen auf der Eingabe \textit{w} = 110 erreicht werden.
+	\\\\
+	Konfigurationen K:\\
+	K =  \{$q_0110 , 1q_010 , 11q_00 , 110q_0 , 11q_10 , 110\bar{q}$\}
+	\section[a 1.3]{Aufgabe 1.3}
+	Die Turingmaschine M verhält sich wie folgt:\\
+	\begin{enumerate}[label=-]
+		\item Wenn die Maschine auf leerer Eingabe läuft wird Abgelehnt.\\
+		\item Die TM Akzeptiert Eingaben mit unterschiedlichen Zeichen am Anfang und Ende.
+	\end{enumerate}
+	\pagebreak
+	\section[a 1.3]{Aufgabe 1.3}
+	Turingmaschine M:\\
+	M = $(\{q_0,q_1,q_2,q_3,q_4\},\{0,1\},\{0,1,B\},B,q_0,\bar{q},\delta)$\\\\
+	\begin{tabular}{l || c c c}
+		$\delta$ & 0 & 1 & B\\
+		\hline
+		$q_0$ & $(q_1,0,R)$ & $(q_1,1,R)$ & $(\bar{q},B,N)$\\
+		$q_1$ & $(q_1,0,R)$ & $(q_1,1,R)$ & $(q_2,B,L)$\\
+		$q_2$ & $(q_3,0,L)$ & $(q_3,1,L)$ & $(\bar{q},B,N)$\\
+		$q_3$ & $(q_4,1,L)$ & $(q_3,1,L)$ & $(q_4,1,N)$\\
+		$q_4$ & $(q_4,0,L)$ & $(q_4,1,L)$ & $(\bar{q},B,R)$\\
+	\end{tabular}\\\\
+	Die TM M funktioniert nach folgendem Schema:\\
+	Ist die Eingabe leer ($\epsilon$) wird sofort der Endzustand erreicht und $\epsilon$ zurückgegeben.\\
+	Ist sie nicht leer, wird zunächst ans Ende der Eingabe manövriert. ($q_1\ \rightarrow\ q_2$)\\
+	Dann springt der Kopf an vorletzte Stelle. ($q_2\ \rightarrow\ q_3$)\\
+	Nun wird bei einer Null, Eins geschrieben und in den $q_4$ Zustand gewechselt. Bei einer Eins wird der Übertrags Zustand eingenommen $q_3$\\
+	Wenn der Übertrag geschrieben wurde (vllt. auch vor die ursprüngliche Eingabe) wird in $q_4$ an die linksmögliche Stelle bis zu einem Blank manövriert und mit $\bar{q}$ Terminiert. W + 2 steht nun rechts neben dem Lesekopf.
+\end{document}
