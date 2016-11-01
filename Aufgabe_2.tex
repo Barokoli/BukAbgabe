@@ -40,5 +40,11 @@
 			\item Gehe nach Rechts bis etwas anderes als $"\#"$ unter dem Kopf steht. Akzeptiere bei einem Blank. Ansonsten lehne das Wort ab.
 			\item Gehe nach Rechts, wenn $"\#"$ unter dem Kopf ist, lehne das Wort ab. Ansonsten gehe nach Links zurück.
 			\end{enumerate}
+		Der Speicherbedarf ist lediglich so groß wie die Eingabe, also O(s(n)).\\
+		Der Zeitbedarf ist:\\ Schritte bis zum ersten $"\#":\frac{1}{2}n$\\
+		Schritte für den Vergleich: $s(d) = (2d-1)$\\
+		Anzahl Vergleiche: $|w|$\\
+		Schritte für alle Vergleiche: $\sum_{i=1}^{|w|}(2i-1)$\\
+		Schritte für gesamte Operation:  $O\Big(\sum_{i=1}^{\frac{1}{2}n-1}(2i-1)+\frac{1}{2}n\Big)$
 	\end{enumerate}
 \end{document}
