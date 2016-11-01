@@ -28,5 +28,17 @@
 	Das Produkt dieser Zustände sind die maximal Möglichen Konfigurationen einer haltenden TM. Zuzüglich des Haltens am Ende.(+1)\\\\
 	$|II \cap III \cap IV| +1 = (|Q| - 1) * |\Gamma|^{s(n)} * s(n)+1$
 	\quad$\square$\\
-	
+	\section[a 2.3]{Aufgabe 2.3}
+	\begin{enumerate} [label=\alph*.]
+		\item Die Turingmaschine funktioniert nach folgendem Schema:\\
+		\begin{enumerate}[label=\arabic*.]
+			\item Gehe solange nach rechts bis ein $"\#"$ unter dem Kopf steht oder durch ein Blank die Maschine ablehnt.
+			\item Gehe nach links und speicher den Buchstaben in einem Zustand beschreibe die Stelle mit $"\#"$.
+			\item Gehe nach rechts bis etwas anderes als $"\#"$ unter dem Kopf steht. Vergleiche mit gespeichertem Zustand. Lehne entweder das Wort ab oder beschreibe die Stelle mit $"\#"$. 7. ausführen, dann mit 4. weiter.
+			\item Gehe nach links bis etwas anderes als $"\#"$ unter dem Kopf, speicher den Buchstaben in einem Zustand beschreibe die Stelle mit $"\#"$. Fahre fort mit 3.
+			\item Wenn in 2 oder 4 ein Blank unter dem Kopf steht wird mit 6. weiter gemacht.
+			\item Gehe nach Rechts bis etwas anderes als $"\#"$ unter dem Kopf steht. Akzeptiere bei einem Blank. Ansonsten lehne das Wort ab.
+			\item Gehe nach Rechts, wenn $"\#"$ unter dem Kopf ist, lehne das Wort ab. Ansonsten gehe nach Links zurück.
+			\end{enumerate}
+	\end{enumerate}
 \end{document}
