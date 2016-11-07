@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{BuK Abgabe 3 | Gruppe 17}
+\author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
+\begin{document}
+	\maketitle 
+	\section[a 3.1]{Aufgabe 3.1}
+	Die Turingmaschine funktioniert nach folgendem Muster:\\
+	Maschine besitzt vier Zustände um die Anzahlen von 0 und 1 zu zählen:\\ $(q0odd,q1odd,q0even,q1even)$ , es gibt noch eine Schrittgröße die bei 1 anfängt und pro Iteration verdoppelt wird, außerdem wird noch die Schrittrichtung gespeichert und wechselt nach jeder Iteration.
+	Jede Iteration läuft folgendermaßen ab:
+	\begin{enumerate}
+		\item Gehe in Schrittrichtung mit der Schrittgröße, wenn dass Zeichen währenddessen unter dem Kopf wechselt merke dir ob Zustand odd oder even ist. Nach jedem erfolgreichen Schritt wird der Zustand gewechselt.
+		\item Gehe in Schrittrichtung mit der Schrittgröße weiter bis ein Blank erreicht wird. Ist dann der Zustand nicht gleich dem gemerkten Zustand, wird das Wort abgelehnt. Nach jedem erfolgreichen Schritt wird der Zustand gewechselt.
+		\item Ändere die Schrittrichtung, verdopple die Schrittlänge und setzte die Zustände auf Odd. Nächste Iteration.
+	\end{enumerate}
+	 Der Algorithmus beendet erfolgreich, wenn die Schrittlänge länger ist als die Anzahl von "0" bzw "1", also während des ersten Schrittes das Vorzeichen gewechselt wird.  (Ausnahme bei $L = 0^* | L = 1^*$ vor Wechsel wird bereits blank erreicht)\\
+	 Das Grundkonzept funktioniert indem verglichen wird ob:\\ $(n_0 mod 2^i > 0) == (n_1 mod 2^i > 0)$\\ nach jeder Iteration i\\\\
+	 Der Algorithmus hat den Zeitbedarf $O(m$ log $m)$, da pro Iteration m Schritte gemacht werden und der Algorithmus im worst-case nach log $m$ Schritten terminiert, wenn Schrittlänge > $n_0$.
+\end{document}
