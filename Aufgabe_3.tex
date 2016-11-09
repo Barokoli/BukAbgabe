@@ -61,5 +61,19 @@
 	 $\implies \mathbb{N}.\mathbb{N} \in \mathbb{N}$ "." steht für die Konkatenation bzw 1.2 = 12.\\
 	 $\implies \mathbb{N}.\mathbb{N}.\mathbb{N}... \in \mathbb{N} \implies \mathbb{N} = \mathbb{N}^*$ \\
 	 $\mathbb{N}$ ist abzählbar somit auch $\mathbb{N}^*$
-	 
+	\section[3.4]{Aufgabe 3.4}
+	\begin{enumerate}
+		\item Konstruiere eine TM die $\langle M \rangle w$ simuliert. 
+		Simuliere 42 Schritte und akzeptiere, wenn bis dahin $\langle M \rangle w$ hält.$\square$\\
+		\item Annahme: Es gibt eine Maschine die $H_{\leq42}$ entscheidet.\\
+		Somit lässt sich eine Maschine $M_H$ mit Unterprogramm $H_{\geq42}$ konstruieren, so dass $M_H$ das Halteproblem entscheidet.\\
+		$M_H$ ist wie folgt aufgebaut:\\
+		Simuliere die ersten 42 Schritte mit $H_{\leq42}$ aus a). Wenn in die Maschine in den ersten 42 Schritten stoppt akzeptiere. Wenn nicht wird das Wort an $H_{\geq42}$ weitergeleitet. Akzeptiert/Ablehnt diese Akzeptiert/Ablehnt auch $M_H$.\\
+		Diese Maschine entspricht dem Halteproblem:\\\\
+		$M_H = \begin{cases}
+			Schritte \leq 42$ | Akzeptiere wenn hält, sonst nicht$\\
+			Schritte > 42$ | Akzeptiere wenn hält, sonst nicht$
+			\end{cases} \Bigg \} = H$\\\\
+		Da das Halteproblem, wie in der Vorlesung gezeigt, nicht entscheidbar ist, kommt es zum Widerspruch. Somit kann es keine Maschine $H_{\geq42}$ geben. $\square$
+	\end{enumerate}	 
 \end{document}
