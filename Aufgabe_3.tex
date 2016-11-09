@@ -26,5 +26,33 @@
 	\end{enumerate}
 	 Der Algorithmus beendet erfolgreich, wenn die Schrittlänge länger ist als die Anzahl von "0" bzw "1", also während des ersten Schrittes das Vorzeichen gewechselt wird.  (Ausnahme bei $L = 0^* | L = 1^*$ vor Wechsel wird bereits blank erreicht)\\
 	 Das Grundkonzept funktioniert indem verglichen wird ob:\\ $(n_0 mod 2^i > 0) == (n_1 mod 2^i > 0)$\\ nach jeder Iteration i\\\\
-	 Der Algorithmus hat den Zeitbedarf $O(m$ log $m)$, da pro Iteration m Schritte gemacht werden und der Algorithmus im worst-case nach log $m$ Schritten terminiert, wenn Schrittlänge > $n_0$.
+	 Der Algorithmus hat den Zeitbedarf $O(m$ log $m)$, da pro Iteration m Schritte gemacht werden und der Algorithmus im worst-case nach log $m$ Schritten terminiert, wenn Schrittlänge > $n_0$.\pagebreak
+	 \section[a 3.2]{Aufgabe 3.2}
+	 \lstset{
+	 	numbers=left,
+	 	stepnumber=1,     
+	 	numberfirstline=false
+	 }
+	 \begin{lstlisting}[title="RAM Zweierlogarithmus"]
+		 CLOAD 2
+		 STORE 2
+		 CLOAD n
+		 STORE 1
+		 IF c(0) = 0 THEN GOTO 13
+		 LOAD 1
+		 DIV 2
+		 STORE 1
+		 LOAD 3
+		 CADD 1
+		 STORE 3
+		 GOTO 5
+		 LOAD 3
+		 STORE 1
+		 END
+	 \end{lstlisting}
+	 Die RAM Läd zunächst die Eingabe an erste Stelle.
+	 Dann wird in jedem Schritt die Eingabe halbiert, bis sie Leer ist.
+	 Die Schritte werden in Register 3 gespeichert. 
+	 Somit wird gezählt an welcher Stelle das höchste bit ist, welches die Zweierpotenz bestimmt.
+	 Ist die Stelle bestimmt, wird der Zähler ins erste Register geladen und ausgegeben.
 \end{document}
