@@ -34,11 +34,19 @@
 			$L(S) = \{\langle M\rangle$ | M berechnet eine Funktion aus S$\}$\\
 			$= \{\langle M\rangle $| M stoppt auf keiner Eingabe$\}$\\
 			Gemäß des Satz von Rice ist $\textbf{H}_{never}$ nicht entscheidbar.\\\\
+			
 			\item Sei S = $\{f_M|f_M(101)$ besucht den Zustand $q_{15}\}$\\
 			S ist nicht trivial, da jede TM durch umbenennung des Startzustandes "$q_{start} \rightarrow q_{15}$" den Zustand $q_{15}$ besucht. S ist aber auch nicht R, da bei jeder TM der Zustand $q_{15}$ umbenannt werden kann.\\
 			Somit gilt der Satz von Rice:\\
 			$L(S) = \{\langle M\rangle$ | M berechnet eine Funktion aus S$\}$\\
 			$= \{\langle M\rangle $| M besucht bei Eingabe 101 den Zustand $ q_{15}\}$\\
 			Gemäß des Satz von Rice ist $\textbf{S}_{15}$ nicht entscheidbar.\\
-		\end{enumerate}
+			
+			\item Sei S = $\{f_M|f_M(x) = x \in bin(\mathbb{P})\}$\\\\
+			Fall 1: \par S ist nicht trivial, da $x \in bin(\mathbb{P})$ entscheidbar ist. S $\neq$ R, da nicht jede TM "$x \in bin(\mathbb{P})$" entscheidet. Somit ist der Satz von Rice anwendbar:\\
+			$L(S) = \{\langle M\rangle$ | M berechnet eine Funktion aus S$\}$\\
+			$= \{\langle M\rangle $| M berechnet S$\}$\\
+			Gemäß des Satzes von Rice ist $\textbf{L}_{\mathbb{P}}$ nicht entscheidbar.\\\\
+			Fall 2: \par S ist trivial, da $x \in bin(\mathbb{P})$ nicht entscheidbar ist. Somit ist auch $\textbf{L}_{\mathbb{P}}$ nicht entscheidbar.\\
+			\end{enumerate}
 \end{document}
