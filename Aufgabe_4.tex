@@ -25,4 +25,14 @@
 		Fall 2:\\
 		$\langle M_{self}\rangle \notin L_{self} \xRightarrow{Def. von L_{self}} M_{self}$ akzeptiert $\langle M_{self}\rangle\\ \xRightarrow{M_{self} entscheidet L_{self}} \langle M_{self}\rangle \in L_{self}$\\\\
 		Somit ist $L_{self}$ nicht rekursiv.\\
+	\section[a 4.2]{Aufgabe 4.2}
+		\begin{enumerate} [label=\alph*.]
+			\item Sei S = $\{f_M|f_M(x) = \bot, x \in \sum^*\}$\\
+			S ist nicht Trivial, da eine Turingmaschine A mit folgendem Übergang Konstruiert werden kann: \\$(q_r,0) \rightarrow (q_r,0,N)$.\\ Somit A $\in$ S $\implies S \neq \{\}$\\
+			S $\neq$ R da für $\{f_M|f_M(x) = x\}$ gilt $f_M \in R$, $f_M \notin S$.\\
+			Somit gilt der Satz von Rice und die Sprache:\\
+			$L(S) = \{\langle M\rangle$ | M berechnet eine Funktion aus S$\}$\\
+			$= \{\langle M\rangle $| M stoppt auf keiner Eingabe$\}$\\
+			Gemäß des Satz von Rice ist $\textbf{H}_{never}$ nicht entscheidbar.
+		\end{enumerate}
 \end{document}
