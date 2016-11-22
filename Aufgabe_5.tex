@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{BuK Abgabe 5 | Gruppe 17}
+\author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
+\begin{document}
+	\maketitle 
+	\section[a 5.1]{Aufgabe 5.1}
+		\begin{enumerate} [label=(\alph*).]
+			\item Gegeben ist:\\
+			$L_1 \leq L_2$ und $L_2 \leq L_3$
+			$\rightarrow$
+			$\exists f_1,f_2$ mit:\\
+			$f_{1|2}$ bildet alle Ja/Nein-Instanzen von $L_{1|2}$ auf Ja/Nein-Instanzen von $L_{2|3}$.\\
+			Somit gibt es die Bildmenge $M_1$ der Ja/Nein-Instanzen in $L_2$ von der Abbildung $f_1$ ($L_1 \xrightarrow{f_1} L_2$).\\
+			$M_1 \subseteq L_2 \Rightarrow\\ \exists M_2$ mit $M_2 = f_2(M_1)$ und $M_2 \subseteq L_3 \Rightarrow\\
+			\exists f_3$ mit $f_3 = L_1 \xrightarrow{L_1 \rightarrow M_1 \rightarrow M_2} M_2$ mit $ M_2 \subseteq L_3 \Rightarrow\\
+			f_3 := L_1 \rightarrow L_3$ mit $f_3$ bildet alle Ja/Nein-Instanzen von $L_1$ auf $L_3$ ab. Die Korrektheit der Funktionen bleibt wie die Ursprünglichen $f_1,f_2$. Somit gilt $L_1 \leq L_3$ für beliebige $L_1,L_2,L_3$ mit $L_1 \leq L_2$ und $L_2 \leq L_3$. Das Reduktionskonzept ist also transitiv.  $\square$
+		\end{enumerate}
+\end{document}
