@@ -10,6 +10,8 @@
 \usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\newlist{arrowlist}{itemize}{1}
+\setlist[arrowlist]{label=$\Rightarrow$}
 
 \title{BuK Abgabe 5 | Gruppe 17}
 \author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
@@ -90,4 +92,51 @@
 			\end{aligned}
 			\end{equation*}
 		\end{enumerate}
+		
+				\section[a 5.4]{Aufgabe 5.4}
+
+		Es existiert eine berechenbare Funktion $f : \{0,1\}^* \rightarrow \{0,1\}^*$, sodass  $x \in \bar{H_{\epsilon}}  \Leftrightarrow f(x) \in L_{101}$ gilt.
+		
+Wir definieren die Funktion $f$:\\
+$w \mapsto \begin{cases} \langleM'\rangle w = \langle M \rangle \\ \epsilon w \neq \langle M \rangle$\\
+wobei $M'$ die TM ist, die wie folgt arbeitet:\\
+\begin{itemize}
+\item  $M'$ simuliert die ersten $i$ Schritte von $M$ auf der Eingabe $\epsilon$, erst ab $i=3$.
+\item Falls $M$ innerhalb dieser $i$ Schritte hält, dann geht $M'$ in die Endlosschleife, ansonsten hält $M'$
+\end{itemize}\\
+
+Berechenbarkeit:\\
+Offensichtlich is die Funktion berechenbar.\\
+Korrektheit:\\
+Fall 1: Wenn $w \neq \langle M\rangle$, dann ist $w \notin \bar{H_{\epsilon}}$, und damit $f(w) = \epsilon \notin L_{101}$\\
+Fall 2:\\
+$w \in \bar{H_{\epsilon}}$ \begin{arrowlist} \item $M$ hält nicht auf der Eingabe $\epsilon$
+
+\item Für alle $i$ angefangen bei $i = 3$ : $M$ hält nicht innerhalb von $i$ Schritten auf $\epsilon$.
+
+\item Für alle $i$ angefangen bei $i = 3$ : $M'$ hält auf all Eingaben der Länge $i$.
+
+\item $M'$ hält auf jeder Eingabe.
+
+\item $M'$ hält auf jeder Eingabe die mit 101 beginnt.
+
+\item $f(w) = \langle M' \rangle \in L_{101}$
+
+
+end{arrowlist}
+
+$w \notin \bar{H_{\epsilon}}$ \begin{arrowlist} \item $M$ hält auf der Eingabe $\epsilon$
+
+\item Es gibt ein $i$, beginnend bei$i = 3$ : $M$ hält innerhalb von $i$ Schritten auf $\epsilon$
+
+\item Es gibt ein $i$, beginnend bei$i = 3$ : $M'$ hält auf keiner Eingabe der Länge mindestens $i$.
+
+\item $M'$ hält nicht auf jeder Eingabe die mit 101 anfängt.
+
+\item $f(w) \notin L_{101}$
+\end{arrowlist}
+
+Damit haben wir gezeigt dass $\bar{H_{\epsilon}} \leq L_{101}$ gilt.
+
+
 \end{document}
