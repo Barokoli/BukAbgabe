@@ -36,4 +36,46 @@
 				\overline{L}_{ja} \rightarrow \overline{M}_{ja}\\
 			\end{cases}\Rightarrow \overline{L_1} \leq \overline{L_2}\\$ Somit gilt $L_1 \leq L_2 \Rightarrow \overline{L_1} \leq \overline{L_2}$  $\square$
 		\end{enumerate}
+	\section[a 5.3]{Aufgabe 5.3}
+		\begin{enumerate} [label=(\alph*).]
+			\item Die Sprache $A_{62}$ ist rekursiv aufzählbar aber nicht rekursiv.\\
+			Beweis in zwei Schritten durch reduktion von $H_\epsilon$ auf $A_{62}$:\\
+			\begin{enumerate}[label=\Roman*.]
+				\item $A_{62}$ ist nicht rekursiv:
+				\begin{enumerate}[label=]
+					\item Es gibt eine berechenbare Funktion f mit folgenden Eigenschaften:\\
+					\begin{enumerate}[label=$\bullet$]
+						\item $\langle M \rangle$ ist keine gültige Gödelnummer f($\langle M \rangle$) = $\overline{w}$  mit  $\overline{w} \in \overline{H_{\epsilon}}$
+						\item Falls w = $\langle M \rangle$ für eine TM M, so sei f(w) die Gödelnummer einer TM $M_{neu}$ mit folgenden Eigenschaften:\\
+						$M_{neu}$ prüft Eingabelänge l
+							$\begin{cases}
+							l > 62$ | verwerfe$\\
+							l \leq 62 $ | verwerfe die Eingabe und Simuliere M mit Eingabe $\epsilon\\
+							\end{cases}$
+					\end{enumerate}
+					\item f bildet $H_{\epsilon}$ korrekt auf $A_{62}$ ab:\\
+					Falls w keine Gödelnummer ist, so ist die Korrektheit klar, denn in diesem Fall gilt W $\notin H_{\epsilon}$ und f(w) $\notin A_{62}$\\
+					Sei w = $\langle M \rangle$ für eine TM M und sei f(w) = $\langle M_{neu} \rangle$\\
+					Es gilt:\\
+					$w \in H_{\epsilon} \Rightarrow$ M hält auf $\epsilon$\\
+					$\Rightarrow \langle M_{neu} \rangle$ hält auf jeder Eingabe mit l $\leq$ 62\\
+					$\Rightarrow \langle M_{neu} \rangle$ hält auf mindestens zwei Wörtern der Länge höchstens 62\\
+					$\Rightarrow \langle M_{neu} \rangle \in A_{62}$\\
+					$\Rightarrow f(w) \in A_{62}$
+					\\\\	
+					$w \notin H_{\epsilon} \Rightarrow$ M hält nicht auf $\epsilon$\\
+					$\Rightarrow \langle M_{neu} \rangle$ hält auf keiner Eingabe\\
+					$\Rightarrow \langle M_{neu} \rangle \notin A_{62}$\\
+					$\Rightarrow f(w) \notin A_{62}$\\
+					Daher ist $H_{\epsilon} \leq A_{62} \Rightarrow A_{62}$ ist nicht Rekursiv.  
+				\end{enumerate}
+			\item $A_{62}$ ist aufzählbar:\\
+			Es gibt eine TM M die $A_{62}$ erkennt mit folgenden Eigenschaften:
+			\begin{enumerate}[label=$\bullet$]
+				\item M Simuliert alle Gödelnummern parallel. Also jeweils einen Schritt auf allen Nummern pro Iteration.
+				\item Die Simulation funktioniert indem jeweils wieder ein Schritt auf jedem Wort mit l $\leq$ 62 Simuliert wird.
+				\item Werden dabei zwei Wörter Akzeptiert "druckt" M die korrespondierende Gödelnummer.
+			\end{enumerate}
+			\end{enumerate}
+		\end{enumerate}
 \end{document}
