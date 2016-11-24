@@ -98,12 +98,12 @@
 		Es existiert eine berechenbare Funktion $f : \{0,1\}^* \rightarrow \{0,1\}^*$, sodass  $x \in \bar{H_{\epsilon}}  \Leftrightarrow f(x) \in L_{101}$ gilt.
 		
 Wir definieren die Funktion $f$:\\
-$w \mapsto \begin{cases} \langleM'\rangle w = \langle M \rangle \\ \epsilon w \neq \langle M \rangle$\\
+$w \mapsto \begin{cases} \langle M'\rangle w = \langle M \rangle \\ \epsilon w \neq \langle M \rangle \end{cases}$\\
 wobei $M'$ die TM ist, die wie folgt arbeitet:\\
 \begin{itemize}
 \item  $M'$ simuliert die ersten $i$ Schritte von $M$ auf der Eingabe $\epsilon$, erst ab $i=3$.
 \item Falls $M$ innerhalb dieser $i$ Schritte hält, dann geht $M'$ in die Endlosschleife, ansonsten hält $M'$
-\end{itemize}\\
+\end{itemize}
 
 Berechenbarkeit:\\
 Offensichtlich is die Funktion berechenbar.\\
@@ -123,9 +123,11 @@ $w \in \bar{H_{\epsilon}}$ \begin{arrowlist} \item $M$ hält nicht auf der Einga
 \item $f(w) = \langle M' \rangle \in L_{101}$
 
 
-end{arrowlist}
+\end{arrowlist}
 
-$w \notin \bar{H_{\epsilon}}$ \begin{arrowlist} \item $M$ hält auf der Eingabe $\epsilon$
+$w \notin \bar{H_{\epsilon}}$ 
+\begin{arrowlist} 
+\item $M$ hält auf der Eingabe $\epsilon$
 
 \item Es gibt ein $i$, beginnend bei$i = 3$ : $M$ hält innerhalb von $i$ Schritten auf $\epsilon$
 
