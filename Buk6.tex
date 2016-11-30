@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{BuK Abgabe 5 | Gruppe 17}
+\author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
+\begin{document}
+	\maketitle
+\section{6.2} 
+Diese PKP-Instanz ist lösbar:\\
+
+$[\frac{bb}{bba}],[\frac{aa}{ab}],[\frac{bb}{bba}],[\frac{baab}{ab}]$\\
+
+\section{6.3}
+\begin{itemize}
+	\item (a) Entscheide dieses Problem mittels einer Mehrband TM. Auf dem 1. Band steht die kodierte Eingabe der Dominos, beispielsweise der Form\\
+	
+	$x_1 \# y_1 \# \#...\# \# x_n \# y_n$\\
+	
+	Die TM arbeitet iterativ mit folgender Schleife:\\
+	
+	Schreibe die Eingabe auf das 1. Band in oben kodierter Form. Auf Band 2 werden alle Kombinationen von $x_{j1},...,x_{ji}$ mit $i \leq l$ unkodiert, nacheinander aufgeschrieben, dazu wird das 3. Band die passende Kombination von $y_{j1},...,y_{ji}$ aufgeschrieben. Anschließend werden sie verglichen und akzeptiert wenn diese gleich sind. Alle Kombinationen werden aufgelistet gemäß der Reihenfolge aufgezählt, also für $n=3$ und $l=2$ beispielsweise\\
+	
+	$x_1 \Rightarrow x_2 \Rightarrow x_3$\\
+	
+	$\Rightarrow x_1 x_1 \Rightarrow x_1 x_2 \Rightarrow x_1 x_3 \Rightarrow x_2 x_1 \Rightarrow x_2 x_2 \Rightarrow x_2 x_3 \Rightarrow x_3 x_1	\Rightarrow x_3 x_2 \Rightarrow x_3 x_3$\\
+	
+	Im Folgenden werden aus Einfachheitsgründen Variablen sowie Schleifen verwendet. Dies ist natürlich realisierbar über TMs nach Vorlesung.\\
+	
+	Falls die Eingabe unkodiert vorliegt, verwerfe. Sonst setze $i :=  1$ und führe die folgende Schleife durch\\
+	WHILE $i \neq l$ DO\\
+	\begin{enumerate}
+	\item $j_1,...,j_i := 1$
+	\item Schreibe die Kombination von $x_{j1},...,x_{ji}$ auf das 2. Band (ohne Trennsymbole)
+	\item Schreibe die Kombination von $y_{j1},...,y_{ji}$ auf das 3. Band (ohne Trennsymbole)
+	\item Wenn Band 2 und 3 gleich sind $\Rightarrow$ akzeptiere, sonst lösche Speicher auf Band 2 und 3
+	\item Erhöhe den Index von $j_i$ um 1. Falls $j_i \geq  n$, dann setze  $j_i := 1$ und $j_{i-1} := j_{i-1} + 1$. Prüfe erneut, ob $j_{i-1}$ kleiner als n ist, und setze es ebenfalls auf 1 falls Gleichheit besteht. Fahre gleich fort für alle $j_{1},...,j_{n}$. Wenn die TM bei $j_1$ angekommen ist  und $j_1 \geq n$ gilt, setze $i := i+1$.
+	\end{enumerate}
+	END;\\
+	Verwerfe, falls die Schleife ohne Akzeptanz terminiert.
+	
+	\item (b) Dieses Problem kann ähnlich wie a) gelöst werden. Verwende die gleiche Kodierung und gleich Vorgehensweise.\\
+	
+	Verwende nun eine andere Aufzählungsreihenfolge. Das Problem ist nun lösbar, da es nur endlich viele Möglichkeiten der Zusammensetzung gibt. Verwende folgende Reihenfolge zum Ausprobieren der Kombination für 3 Dominos beispielsweise
+	
+	$x_1 \Rightarrow x_2 \Rightarrow x_3$\\
+	
+	$x_1 x_2 \Rightarrow x_1 x_3 \Rightarrow x_2 x_1 \Rightarrow x_2 x_3 \Rightarrow x_3 x_1 \Rightarrow x_3 x_2$\\
+	
+$x_1 x_2 x_3 \Rightarrow x_1 x_3 x_2 \Rightarrow x_2 x_1 x_3 \Rightarrow x_2 x_3 x_1 \Rightarrow x_3 x_1 x_2 \Rightarrow x_3 x_2 x_1$\\
+
+Falls die Eingabe unkodiert vorliegt, verwerfe. Sonst setze $ i:= 1$ und führe die folgende Schleife durch\\
+WHILE $i \neq n$ DO\\
+\begin{itemize}
+\item Gehe jede sich nicht wiederholende $i$-Permutation von $x_1,...,x_n$ durch. Für die Anzahl der $i$-Permutation über $n$-elementigen Menge ergibt sich $i! * \begin{pmatrix}
+n\\
+i
+\end{pmatrix}$, also nur endlich viele Möglichkeiten.
+\item Schreibe diese Permutationen einzeln auf Band 2 und 3. Vergleiche diese. Sofern Gleichheit besteht, akzeptiere . Ansonsten verwirf diese Permutation und fahre mit der nächsten fort, sofern noch nicht alle geprüft wurden.
+\end{itemize}
+
+END;\\
+Verwerfe, falls die Schleife ohne Akzeptanz terminiert.\\
+
+\item (c) Da $\vert{\Sigma}\vert = 1$, haben Dominos beispielsweise die folgende Form mit $a \in \Sigma$.\\
+
+	$\{[\frac{aa}{a}],[\frac{aa}{aaa}],[\frac{aaaa}{aa}]\}$\\
+	
+	Wir berechnen die Differenz zwischen der Menge der oberen Symbole und unteren Symbole. Dabei notiere jeweils nur, ob diese positiv oder negativ ist. Wenn sich mittels dieser Differenz die 0 darstellen lässt, dann existiert eine Lösung für das Problem. Dies geschieht dann, wenn entweder eine der Zahlen 0 ist oder es sowohl eine positive, als auch negative Zahl gibt. In diesem Beispiel gibt es eine positive und eine negative Differenz, wodurch PKP lösbar ist, denn es lassen sich diese Dominos beliebig oft aneinanderschieben bis die Mächtigkeit der zusammengesetzten Wörtern dem $kgV$ der Differenzen entspricht. Dies lässt sich einfach durch eine TM überprüfen.\\
+	
+	$M$ soll das PKP-Problem lösen mit $\vert \Sigma \vert  = 1$. Falls die Eingabe unkodiert vorliegt, verwerfe. Ansosnten lies die Eingabe der Dominos und berechne die Differenz. Es ergeben sich folgende Fälle.\\
+	
+	\begin{enumerate}
+	\item Differenz ist 0, dann akzeptiere
+	\item Differenz ist positiv und es wurde noch keine negative Differenz gelesen. Speichere, dass die postive Differenz gelesen wurde.
+	\item Differenz ist negativ und es wurde noch keine positive Differenz gelesen. Speichere, dass die negative Differenz gelesen wurde.
+	\item Differenz ist positiv und es wurde eine negative Differenz gelesen, dann akzeptiere. 
+	\item Differenz ist negativ und es wurde eine positive Differenz gelesen, dann akzeptiere.
+	\end{enumerate}
+	Falls alle Dominos gelesen wurden und noch nicht akzeptiert wurde, verwirf.	
+\end{itemize}
+
+\section{6.4}
+
+
+\begin{tabular}{l l r}
+$x_4:=x_1+0;x_3:= x_1+0;x_5:= x_1+0$\\
+WHILE $x_2 \neq 0$ DO\\
+~ WHILE $x_4 \neq 1$ DO\\
+~ ~ $x_6:= x_1 + 0$\\
+~ ~ WHILE $x_6 \neq 0$ DO\\
+~ ~ ~ $x_3:= x_3 + 1$\\
+~ ~ ~ $x_6:= x_6 - 1$\\
+~ ~ END\\
+~ ~ $x_4:= x_4 - 1$\\
+~ ~ END\\
+~ $x_1:= x_3 + 0$\\
+~ $x_2:= x_2 - 1$\\
+~ $x_4:= x_5 + 0$\\
+END\\
+$x_0:= x_3 + 0$\\
+\end{tabular}
+	
+\end{document}
