@@ -1,0 +1,72 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newlist{arrowlist}{itemize}{1}
+\setlist[arrowlist]{label=$\Rightarrow$}
+
+\title{BuK Abgabe 7 | Gruppe 17}
+\author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
+\begin{document}
+	\maketitle 
+	\section[a 7.1]{Aufgabe 7.1}
+	Die RAM-Befehler können folgendermaßen ersetzt werden:\\
+	\begin{enumerate}[label=(\alph*).]
+		\item MULT 1:\\
+		\lstset{
+			numbers=left,
+			stepnumber=1,    
+			firstnumber=0,
+			numberfirstline=false
+		}
+		\begin{lstlisting}
+		//Multipliziere c(0) und c(1) Ergebniss in c(0)
+		STORE j
+		STORE j+2
+		LOAD 1
+		STORE j+1
+		STORE j+3
+		if c(0) = 0 THEN GOTO 23
+			LOAD j+2
+			if c(0) = 0 THEN GOTO 16
+				LOAD j+4
+				CADD 1
+				STORE j+4
+				CLOAD j+2
+				CADD -1
+				STORE j+2
+				GOTO 8
+			END
+			LOAD j
+			STORE j+2
+			LOAD j+3
+			CADD -1
+			STORE j+3
+			GOTO 6
+		END
+		LOAD j+4
+		\end{lstlisting}
+		\item INDLOAD i:
+		\begin{lstlisting}
+		//Load c(c(i))
+		LOAD i
+		LOAD c(0)
+		\end{lstlisting}
+	\end{enumerate}
+	\section[a 7.3]{Aufgabe 7.3}
+	Aussage (a) trifft zu, da $A_{LOOP}$ auf $H$ nach folgendem schema Reduzierbar ist. \\
+	Berechenbare Funktion f:\\
+	$\langle P \rangle$ ist ungültiges LOOP-Programm $\rightarrow$ Touringmaschine die nie hält.\\
+	Ansonsten $\rightarrow$ Touringmaschine die das LOOP-Programm simuliert (hält immer).\\
+	Dies ist aber auch schon dadurch gegeben, dass die LOOP-Programme rekursiv berechenbar sind und das Halteproblem nur rekursiv aufzählbar ist, dies schließt (b) aus.
+	\section[a 7.4]{Aufgabe 7.4}
+	
+\end{document}
