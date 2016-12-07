@@ -61,6 +61,32 @@
 		LOAD c(0)
 		\end{lstlisting}
 	\end{enumerate}
+	
+	\section{7.2}
+
+\begin{itemize}
+\item (a)\\
+Dieses Problem ist entscheidbar. Nach der Definition von LOOP-Programmen sind jene immer endlich, also terminieren nach einer endlichen Anzahl an Schritten. Man kann also die LOOP-Schleife simulieren und erhält nach endlich vielen Schritten die Rückgabe des LOOP-Programms und kann somit entscheiden, ob das Programm auf die Eingabe $x$ die Ausgabe $y$ berechnet.
+
+\item (b)\\
+Angenommen das Problem wäre entscheidbar. Da WHILE-Programme turinvollständig sind, muss auch $L$ entscheidbar sein:\\
+
+$L=\{\langle M \rangle \mid M$ berechnet zur Eingabe $x$ die Ausgabe $y \}$\\
+
+$L$ lässt sich durch ein WHILE-Programm berechnen. $L$ ist  jedoch unentscheidbar, dies zeigen wir mittels Satz von Rice.
+
+Sei $S:=\{f_M \mid f_M(x) = y \}$\\
+
+Offensichtlich ist $S=\emptyset$. Ebenfalls gilt $S \neq R$, denn es gilt $f_{\bot} \in R \setminus S$ mit $f_{\bot}(w)=\bot$ für alle $w \in \Sigma$. Daraus folgt:\\
+
+\begin{center}
+$L(S) = \{ \langle M \rangle \mid M$ berechnet eine Funktion aus $S \}$\\
+ $= \{ \langle M \rangle \mid M$ berechnet zur Eingabe $x$ die Ausgabe $y \} = L$\\
+\end{center}
+
+Aufgrund des Satzes von Rice ist $L$ unentscheidbar.
+\end{itemize}
+	
 	\section[a 7.3]{Aufgabe 7.3}
 	Aussage (a) trifft zu, da $A_{LOOP}$ auf $H$ nach folgendem schema Reduzierbar ist. \\
 	Berechenbare Funktion f:\\
