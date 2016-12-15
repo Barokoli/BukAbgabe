@@ -22,7 +22,7 @@
 \author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
 \begin{document}
 	\maketitle 
-	\section[a 8.1]{Aufgabe 8.1}
+	\section[a 8.2]{Aufgabe 8.2}
 	\begin{enumerate}[label=(\alph*).]
 		\item Graphen in Adjazenzschreibweise mit Colorierung:
 		
@@ -70,4 +70,41 @@
 			\item Es wird jede korrekte Konfiguration abgedeckt, da bei Schritt 1. die Farbe irrelevant ist und jederzeit alle Farben invertiert werden können. Durch Schritt 1. ist die Farbe von Graphen-komponenten unabhängig. Jede Komponente hat zwei mögliche Colorierungen (Invertierung). 
 		\end{enumerate}
 	\end{enumerate}
+
+	\section[a 8.3]{Aufgabe 8.3}
+	Um zu zeigen, dass 3-Colorability in NP liegt wird 3-Colorability $\leq_p$ SAT gezeigt.\\
+	Es gibt eine Funktion f mit folgenden Eigenschaften welche in polynomieller Zeit berechenbar ist.\\
+	Jede Farbkonfiguration aus dem Problem der 3-Colorability wird folgendermaßen im SAT-Problem konfiguriert: 
+	\begin{align*}
+	\forall v \in V, x^1_v,x^2_v,x^3_v,\text{mit} \begin{cases}
+	i = \text{farbe}(1...3)|  x^i_v = 1\\
+	i \neq \text{farbe}(1...3)|  x^i_v = 0
+	\end{cases}\\
+	\text{Knotenbedingung: }& \bigwedge_{v \in V} (x^1_v \vee x^2_v \vee x^3_v)\\
+	\text{Kantenbedingung: }& \bigwedge_{\{u,v\} \in E} (\bar{x}^1_u \vee \bar{x}^1_v) \wedge ( \bar{x}^2_v \vee \bar{x}^2_u) \wedge (\bar{x}^3_u \vee \bar{x}^3_v)\\
+	\varphi = \text{Knotenbedingung $\wedge$ Kantenbedingung}\\
+	f konstruiert \varphi\\
+	Anzahl der Literale: O(3*|V|+3*|E|)\\
+	max(|E|) = |V^2|\\
+	Anzahl der Literale: O(|V^3|)\\
+	\end{align*}
+	Somit ist die Länge der zu berechnenden Formel für f polynomiell beschränkt und kann also in polynomieller Zeit berechnet werden.\\
+	
+	Korrektheit:\\
+	\begin{align*}
+		\text{Graph G ist colorierbar.} \Rightarrow& \text{Es gibt 3-Färbung.}\\
+		\Rightarrow& \text{Knotenbedingung ist erfüllt, da jeder Knoten eine Farbe hat.}\\
+		\Rightarrow& \text{keine zwei benachbarten Kanten haben die selbe Farbe.}\\
+		\Rightarrow& \text{Kantenbedingung ist erfüllt.}\\		
+		\Rightarrow& \varPhi \text{ ist erfüllbar}\\
+	\end{align*}
+	\begin{align*}
+	\varphi \text{ ist erfüllbar.} \Rightarrow& \text{Es gibt eine erfüllende Belegung für }\varphi.\\
+	\Rightarrow& \text{Die Knotenbedingung und die Kantenbedingung sind erfüllt}\\
+	\Rightarrow& \text{jeder Knoten hat mindestens eine Farbe}\\
+	\Rightarrow& \text{keine zwei adjazenten Knoten sind gleichfarbig}\\		
+	\Rightarrow& \text{es gibt eine korrekte 3-Färbung für G}\\
+	\end{align*}
+	Somit lässt sich 3-Colorability auf SAT Reduzieren. Also ist auch 3-Colorability in NP.
+	$\square$
 \end{document}
