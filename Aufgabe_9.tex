@@ -69,5 +69,43 @@
 		Somit kann in polynomieller Zeit verifiziert werden ob das Zertifikat stimmt, ob also eine Permutation existiert die die Knoten von $G_1$ auf $G_2$ abbildet und Kanten erhalten bleiben. Also prüft es ob die Graphen isomorph sind. $\Rightarrow$ Graphisomorphie $\in$ NP.
 		\begin{flushright}$\square$\end{flushright}
 	\end{enumerate}
+
+	\section[a 9.3]{Aufgabe 9.3}
+	\textbf{DoubleSAT}:\\
+	\begin{enumerate}[label=\Roman*.]
+		\item DoubleSAT ist in NP da ein Verifizierer leicht ein Zertifikat verifizieren kann welches der Form zwei gültiger Belegungen sind. Somit $DoubleSAT \in NP$
+		\item Reduktion von SAT auf DoubleSAT:\\
+		Es gibt eine polynomiell berechenbare Funktion f, die SAT auf DoubleSAT abbildet.\\
+		Diese Funktion f bildet aus den Literalen von SAT neue Literale für DoubleSAT folgendermaßen:\\
+		KNF von SAT: $((l_1) \wedge (l_2) \wedge ... (l_n))\\   \rightarrow $\\
+		DoubleSAT: $ ((l_1 \vee x) \wedge (l_2 \vee x) \wedge ... (l_n \vee x) \wedge 
+		(l_1 \vee \bar{x}) \wedge (l_2 \vee \bar{x}) \wedge ... (l_n \vee \bar{x}))$\\
+		\item Korrektheit:\\
+		AC entspricht der KNF der Form $((l_1 \vee x) \wedge (l_2 \vee x) \wedge ... (l_n \vee x)$\\
+		$A\neg C$ entspricht der KNF der Form $(l_1 \vee \bar{x}) \wedge (l_2 \vee \bar{x}) \wedge ... (l_n \vee \bar{x}))$\\
+		A entspricht der KNF der Form $((l_1) \wedge (l_2) \wedge ... (l_n))$
+		\\\\
+		Es gibt zwei Belegungen für $\gamma \Rightarrow$ es gibt eine Belegung für $\delta$\\
+		\begin{equation}
+		\nonumber
+			\begin{split}
+				\text{Es gibt zwei Belegungen für }\gamma \Rightarrow & AC \wedge A \neg C \text{ hat zwei Belegungen}\\
+				\Rightarrow & A \text{ hat eine Belegung}\\
+				\Rightarrow & \text{ es gibt eine Belegung für }\delta
+			\end{split}
+		\end{equation}
+		
+		Es gibt eine Belegung für $\delta \Rightarrow$ es gibt zwei Belegungen für $\gamma$\\
+		\begin{equation}
+		\nonumber
+		\begin{split}
+		\text{Es gibt eine Belegung für }\delta \Rightarrow & A \text{ hat eine Belegung}\\
+		\Rightarrow & AC \wedge A\neg C \text{ hat zwei Belegungen}\\
+		\Rightarrow & \text{ es gibt zwei Belegungen für }\gamma
+		\end{split}
+		\end{equation}
+		\begin{flushright}$\square$\end{flushright}
+	\end{enumerate}
+	Somit gilt SAT $\leq_q$ DoubleSAT und DoubleSAT ist NP-vollständig.
 	
 \end{document}
