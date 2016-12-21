@@ -70,6 +70,55 @@
 		\begin{flushright}$\square$\end{flushright}
 	\end{enumerate}
 
+\section{Aufgabe 9.2}
+
+
+a)\\
+Die minimale Anzahl an Buckets ist 1, die maximale Anzahl $N$. Analog zur Vorlesung suchen wir zunächst den Zielfunktionswert für eine Zwischenvariante. Diesen Algorithmus nennen wir $B$ und wir verwenden die Binärsuche zum Finden des optimalen Zielfunktionswert im Wertebereich $[0,N]$. Sei dazu $A$ ein Polynomialalgorithmus für die Entscheidungsvariante von BPP. In jeder Iteration von $A$ erfahren wir, in welche Richtung wir weitersuchen müssen bzw. ob das Ergebnis bereits optimal ist. Für die Anzahl der Iterationen ergibt sich ein Maximum von $\lceil log(N+1)\rceil$.
+
+Analog zur Vorlesung setzen wir dies in Relation mit der Eingabelänge. Dazu wird zunächst die Kodierung der Eingabezahlen betrachtet, welche für eine natürliche Zahl $a$ definiert wird als $k(a):= \lceil log(a+1)\rceil$, also die Länge der binären Kodierung. Dann gilt auch $\sum_{a \in \{w_1,...,w_N \}} k(a) \geq  k(N) =  \lceil log(N+1)\rceil$. Somit ist auch der Algorithmus für die Entscheidungvariante polynomiell beschränkt.
+
+Nun haben wir Algorithmus $B$ gegeben zum Bestimmen der Zwischenvariante und konstruieren damit $C$, der nun das Optimierungsproblem löst. Der Algorithmus arbeitet folgendermaßen: Arbeite iterativ an der Menge der Bucketwerte. Nimm immer das Maximum aus der Menge heraus und tu es in einen Bucket. Prüfe ob man die Restmenge auf die anderen Buckets verteilen kann mittels Algorithmus $B$. Wenn nicht, dann nimm das maximale Element aus der Menge heraus, sodass der Bucket immer noch kleiner $b$ ist und wiederhole die letzte Überprüfung. Sobald man die Restelemente auf weniger Buckets verteilen kann, speichere die Belegung in $f$ und fahre fort mit dem nächsten Bucket. Im Folgendem beschreiben $maxrest(X,Y)$ das gößte Element $y_{max}$ aus $Y$, sodass $y_{max}+ \sum_{x \in X}x \leq b$. Dieser Algorithmus besitzt ebenfalls polynomielle Laufzeit.  \\
+
+\begin{lstlisting}[escapeinside={(*}{*)}]
+(*\textbf{Data} $b \in \mathbb{N}, w_1,...,w_n \in \{1,...,b\}$ *)
+(*\textbf{Result} $k \in \mathbb{N}, f: \{1,...,N\} \to \{1,...,k\}$ *)
+(*$L:= \{w_1,...,w_n\}$;*)
+(*$k:= B(\{w_1,...,w_n\})$;*)
+(*$buckets := k$;*)
+(*\textbf{for} $i:= \{1,...,k\}$ \textbf{do}*) 
+	(*$res:= \{max(L)\}$;*)
+	(*$L:= L$*)\(*$res$;*)
+	(*$buckets:=buckets-1$;*)  
+	(*\textbf{while} $B(L) > buckets\& buckets \neq 0$ \textbf{do}*) 
+		(*$res:= res \cup maxrest(L,res)$;*)
+		(*$L:=L$*)\(*$res$;*)
+	(*\textbf{end}*)
+	(*$f(i):=res$;*)
+(*\textbf{end}*)		
+\end{lstlisting}
+
+~\
+
+b)\\
+Sei die Entscheidungsvariante von TSP polynomiell. Dann existiert ein Polynomialzeitalgorithmus $A$ für die Entscheidungsvariante und wir konstruieren ein Algorithmus $B$ für die Optimierungsvariante mit $A$ als Unterprogramm:\\
+\begin{itemize}
+\item Eingabe $B$: gewichtetes vollständiger Graph $G$ mit $n$ Knoten
+\item Sei $w_{max}= max\{$Kantengewicht$\}$\\
+$\Rightarrow$ jede Rundreise in $G$ hat höchstens $n*w_{max}$ Kosten
+\item lösche Kante aus $G$ und setze Kosten auf $n*w_{max}+1$
+\end{itemize}
+
+Wir suchen die optimale Lösung $b$ mit binärer Suche und gehen wie folgt vor:
+\begin{itemize}
+\item $B$ iteriert über alle Kanten $e$ von $G$ 
+\item $B$ löscht Kante $e$ und prüft mit $A$ ob eine Rundreise mit Kosten $b$ existiert. Falls diese existiert, gibt es eine optimale Rundreise die nicht über $e$ führt, $B$ löscht also $e$ und wählt eine andere Kante bis nur noch $n$ Kanten vorhanden sind. Falls diese nicht existiert, führt die optimale Rundreise über $e$, $B$ löscht $e$ nicht und wählt die nächste Kante
+\end{itemize}
+
+
+Jede Kante wird höchstens einmal von $B$ gelöscht, dabei wird jeweils $A$ aufgerufen.\\
+$\Rightarrow B$ ist polynomiell 
+
 	\section[a 9.3]{Aufgabe 9.3}
 	\textbf{DoubleSAT}:\\
 	\begin{enumerate}[label=\Roman*.]
