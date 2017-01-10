@@ -1,0 +1,60 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newlist{arrowlist}{itemize}{1}
+\setlist[arrowlist]{label=$\Rightarrow$}
+
+\title{BuK Abgabe 9 | Gruppe 17}
+\author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
+\begin{document}
+	\maketitle 
+	\section[a 10.1]{Aufgabe 10.1}
+	\textbf{ Entscheidungsvariante:}\\
+	
+	Sei $b \in \mathbb{N}$ fest.\\
+	
+	$\exists j:\{1,...,n\}\to\{1,...,.m\}: \max\limits_{1 \leq i \leq m} \sum\limits_{j:s(j)=i} p_j=b$\\
+	
+\textbf{Reduktion:}	\\
+
+Wir definieren:\\
+
+$f: \sum^* \to \sum^*, x \mapsto \left\{\begin{array}{cl}
+
+(2,(a_1,...,a_n),p-b)& ,x=(a_1,...,a_n),b,b\leq p-b \\ (2,(a_1,...,a_n),b) & , x=(a_1,...,a_n),b,b >p-b \\ x & ,\mbox{sonst} \end{array} \right.$
+
+wobei $p=\sum_{i=1}^n a_i$. $f$ ist polynomiell berechenbar, denn die Berechnung von $p$ geht nach logarithmischen Kostenmaß in $\mathcal{O}(n*log(l))$, wobei $l=\max \{m \in \mathbb{N} | m= \vert bin(a_i) \vert , 1\leq i \leq n\}$.\\
+Bleibt zu zeigen:\\
+
+$x \in$ SubsetSum $ \Leftrightarrow f(x) \in$ MSE\\
+
+
+wobei\\
+MSE$:=\{(m,(p_1,...,p_m),b) | \exists j : \{1,...,n\} \to \{1,...,m\}: \max\limits_{1 \leq i \leq m} \sum\limits_{j:s(j)=i} p_j=b \}$\\
+die von der obigen definierten Entscheidungsvariante erzeugte Sprache ist.\\
+
+\textbf{Korrektheit}:\\
+
+Nach Definition von SubsetSum gilt:\\
+$x \in $SubsetSum$ \Leftrightarrow x=(a_1,...,a_n),b$ mit $a_i,b \in \mathbb{N}, 1\leq i \leq n$ : $\exists I \subseteq \{1,...,n\}:\sum\limits_{i \in I} a_i=b$.\\
+
+$\Leftrightarrow$ Definiere $J:=\{1,...,n\} \setminus I, s:\{1,...,n\} \to \{1,2\}, x \mapsto \left\{\begin{array}{cl} 1 & ,x\in I\\ 2 & , x\in J \end{array} \right.$\\
+
+wohldefiniert, da $I,J$ Partion von $\{1,...,n\}$ ist. Es gilt:\\
+
+$\Leftrightarrow\max\limits_{1 \leq i \leq m} \sum\limits_{j:s(j)=i} a_j = \left\{\begin{array}{cl} 
+(2,(a_1,...,a_n),p-b)& ,x=(a_1,...,a_n),b,b\leq p-b \\ (2,(a_1,...,a_n),b) & , x=(a_1,...,a_n),b,b >p-b\end{array} \right. \in $MSE\\
+
+$\Leftrightarrow f(x) \in$ MSE
+	
+	
+\end{document}
