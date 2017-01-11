@@ -56,5 +56,27 @@ $\Leftrightarrow\max\limits_{1 \leq i \leq m} \sum\limits_{j:s(j)=i} a_j = \left
 
 $\Leftrightarrow f(x) \in$ MSE
 	
+\section{Aufgabe 10.2}
+
+3-Partition ist $\in$ NP, da Spezialfall von SubsetSum ist. 3-Partition ist NP-hart:\\
+Zeige SubsetSum $\leq p$ 3-Partition, Eingabe SubsetSum: $a_1,...,a_n \in \mathbb{N}, b \in \mathbb{N}$.\\
+Bilde SubsetSum Eingabe auf 3-Partition ab:\\
+
+$a_1\prime,...,a_{n+3}\prime$ wobei $a_i\prime=a_i$ für $1<i<n$\\
+
+$a_{n+1}\prime = 2A-b$, $a_{n+2}\prime = A+b$, $a_{n+3}\prime = 2A$\\
+
+In der Summer ergibt die Eingabe $6A$. Suche eine Aufteilung in drei Teilmengen, die jeweils in der Summer $2A$ ergeben. Die Eingabetransformation ist polynomiell berechenbar.\\
+
+\textbf{Korrektheit.}\\
+
+$\exists$ Lösung $P$ für $3-P$\\
+$\Rightarrow a_{n+1}\prime, a_{n+2}\prime$ und $a_{n+3}\prime$ müssen in verschiedene Teilmengen sein, da $a_{n+1}\prime+a_{n+2}\prime>2A$, $a_{n+1}\prime+a_{n+3}\prime>2A$ und $a_{n+2}\prime+a_{n+3}\prime>2A$\\
+$\Rightarrow \exists$ Lösung $S$ für SubsetSum, da $a_{n+1}\prime+\sum\limits_{i \in P} a_i = b$\\
+
+$\exists$ Lösung $S$ für SubsetSum\\
+$\Rightarrow S\cap \{a_{n+1}\prime\}=S\prime \subset \{a_{n+1}\prime,...,a_{n+3}\prime \}$ mit $\sum\limits_{i \in S\prime} a_i=2A$\\
+$\Rightarrow$ $S\prime$ ist die Lösung für 3-Partition
+	
 	
 \end{document}
