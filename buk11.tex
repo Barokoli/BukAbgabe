@@ -1,0 +1,47 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newlist{arrowlist}{itemize}{1}
+\setlist[arrowlist]{label=$\Rightarrow$}
+
+\title{BuK Abgabe 9 | Gruppe 17}
+\author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
+\begin{document}
+	\maketitle 
+\section{Aufgabe 11.1}
+Sei eine Instanz von 3-SAT gegeben, also eine aussagenlogische Formel $\phi$ in 3-KNF, mit der Frage, ob es eine erfüllende Belegung $\alpha$ für $\phi$ existiert.\\
+Nun wollen wir daraus eine Instanz von NOT-ALL-EQUAL-SAT erzeugen. Dazu transformieren wir $\phi$ zu einer neuen aussagenlogische Formel $\psi$ in 3-KNF, indem wir jede Klausel in $\phi$ in zwei neue Klauseln umwandeln:\\
+
+$(x_i \lor x_j \lor x_k) \rightarrow (x_i \lor x_j \lor y_{i,j}) \land (\lnot y_{i,j} \lor x_k \lor x_l)$\\
+
+wobei wir später noch über die Rolle von $x_l$ sprechen wollen. Diese Transformation ist in polynomieller Zeit gemessen an der Eingabelänge möglich, da lediglich pro Klausel in einem einfachen Verfahren eine zweite Klausel erstellt wird, welche eine neue Variable $y_{i,j}$ und die wiederbenutzte Variable $x_l$ einführt.\\
+Es bleibt zu zeigen, dass eine solche NOT-ALL-EQUAL-SAT-Instanz genau dann eine Ja-Instanz ist, wenn bereits die Ausgangsinstanz von 3-SAT eine Ja-Instanz ist. Dazu nehmen wir an, dass die 3-SAT-Instanz $\phi$ eine Ja-Instanz ist und so eine erfüllende Belegung $\alpha$ besitzt. Dann erhalten wir eine erfüllende Belegung $\beta$ für $\psi$, welche die Zusatzbedingung von NOT-ALL-EQUAL-SAT erfüllt, indem wir alle übernommenen Variablen $x_i$ einfach $\beta (x_i) = \alpha (x_i)$ setzen. Zudem setzen wir $\beta (x_l)=0$. Entsprechend erhalten wir also für unsere Klauseln mehrere Möglichkeiten:\\
+
+\begin{itemize}
+\item $\alpha(x_i)=\alpha(x_j)=1$ gilt. Dann müssen wir $\beta(y_{i,j})=0$ setzen und entsprechend ist die zweite erzeugte Klausel ebenfalls erfüllt. Da $\beta(x_l)=0$ ist, sind die Bedingungen von NOT-ALL-EQUAL-SAT für die Klauseln erfüllt. $\beta$ erfüllt die Klauseln und in jeder Klausel gibt es ein falsches Literal.
+\item $\alpha(x_i)\neq \alpha(x_j)$ gilt. Dann ist die erste erfüllt und wir können $\beta(y_{i,j})$ nach Belieben setzen. Wir setzen nun $\beta(y_{i,j}) = \alpha(x_k)$ und somit ist bereits $(\lnot y_{i,j} \lor x_k)$ stets erfüllt und die NOT-ALL-EQUAL-SAT-Zusatzbedingung ebenfalls.
+\item $\alpha(x_i)=\alpha(x_j)=0$ gilt. Dann müssen wir $\beta (y_{i,j})=1$ setzen, um die erste Klausel zu erfüllen. In der zweiten Klausel muss aber $\alpha(x_k)=1$ bereits gelten, da $\alpha$ ein Modell für $\phi$ ist. Mit $\beta (\lnot y_{i,j})=0$ folgt also sofort, dass auch die zweite Klausel erfüllt ist und der Zusatzbedingung genügt.
+\end{itemize}
+
+Entsprechend ist $\beta$ ein Modell für $\psi$, welches zudem die Nebenbedingung von NOT-ALL-EQUAL-SAT erfüllt und somit ist $\psi$ eine Ja-Instanz von NOT-ALL-EQUAL-SAT.\\
+
+
+Andersherum: Sei $\psi$ eine Ja-Instanz von NOT-ALL-EQUAL-SAT erfüllt, existiert also ein Modell $\beta$ für $\psi$ gegeben, welches die Nebenbedingung von NOT-ALL-EQUAL-SAT erfüllt ist. Nun erhalten wir zwei Fälle:
+\begin{itemize}
+\item $\beta(x_l)=0$ gilt. Dann muss für mindestens ein Literal $x_i$ aus $\phi$ aus jedem Klauselpaar, welches aus einer Klausel von $\phi$ konstruiert wurde, $\beta(x_i)=1$ gelten. Entsprechend ist jede Klausel von $\phi$ erfüllt durch die Belegung $\beta |_{x_i \in \phi}$ und somit ist $\phi$ eine Ja-Instanz von 3-SAT.
+\item $\beta(x_l)=1$ gilt. Dann können wir die Belegung einfach invertieren, da die Invertierung einer erfüllenden NOT-ALL-EQUAL-SAT-Belegung wiederum eine erfüllende NOT-ALL-EQUAL-SAT-Belegung ist (Es gab stets mindestens ein unerfülltes Literal und ein erfülltes. Invertieren wir die Belegung, so ist das vorher unerfüllte Literal nun erfüllt und das vorher Erfüllte nun unerfüllt) und wir erhalten für die invertierte Belegung $\bar{\beta}$ den ersten Fall. 
+\end{itemize}
+
+Entsprechend muss, falls die erzeugte Formel $\psi$ eine Ja-Instanz von NOT-ALL-EQUAL-SAT ist, bereits die Ausgangsinstanz von 3-SAT eine Ja-Instanz gewesen sei.\\
+
+Insgesamt gilt also 3-SAT$\leq_p$ NOT-ALL-EQUAL-SAT.
+\end{document}
