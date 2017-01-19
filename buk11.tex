@@ -13,7 +13,7 @@
 \newlist{arrowlist}{itemize}{1}
 \setlist[arrowlist]{label=$\Rightarrow$}
 
-\title{BuK Abgabe 9 | Gruppe 17}
+\title{BuK Abgabe 11 | Gruppe 17}
 \author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
 \begin{document}
 	\maketitle 
@@ -44,4 +44,21 @@ Andersherum: Sei $\psi$ eine Ja-Instanz von NOT-ALL-EQUAL-SAT erfüllt, existier
 Entsprechend muss, falls die erzeugte Formel $\psi$ eine Ja-Instanz von NOT-ALL-EQUAL-SAT ist, bereits die Ausgangsinstanz von 3-SAT eine Ja-Instanz gewesen sei.\\
 
 Insgesamt gilt also 3-SAT$\leq_p$ NOT-ALL-EQUAL-SAT.
+
+\section{Aufgabe 11.2}
+2-Approximation für \textsc{VertexCover}:\\
+Für Graph G = (V,E).
+\begin{enumerate}
+	\item Wähle einen Knoten $v_{max}$ mit den meisten inzidenten Kanten $E_{sub}$.
+	\item Wiederhole dies für den Teilgraphen $G_{sub}$ = (V/$v_{max}$,E/$E_{sub}$) bis $|E|$ = 0;
+\end{enumerate}
+Die gewählten Knoten entsprechen einem \textsc{VertexCover} mit |C| = $2*min$\textsc{VertexCover}. \\
+\textbf{Korrektheit:}\\
+Für die Entscheidung ob ein Knoten im \textsc{VertexCover} ist, ist nur die direkte Nachbarschaft wichtig. Denn bei Verbindungen über zwei Kanten braucht es mindestens den ersten Knoten und den indirekt verbundenen oder den zweiten in der Mitte. Wenn nun zunächst die Knoten mit den meisten Kanten gewählt werden kommt es zu zwei Möglichkeiten:\
+\begin{enumerate}
+	\item es gibt den Knoten mit den meisten Kanten. Durch "Falschauswahl" kann maximal eine Kante in der Nachbarschaft gewählt werden. Da aber der Grad sowieso mindestens größer, als der der Nachbarn ist, ist der Knoten minimal.
+	\item es gibt mehrere Knoten mit maximalem grad. Durch "Falschauswahl" kann eine Kante in der Nachbarschaft ungünstig gewählt werden, sodass ein Knoten mehr als die optimale Lösung gewählt wird.
+\end{enumerate}
+Es kommt also maximal pro "Falschauswahl" zu doppelter Knotenmenge. Wird bei jedem Knoten ungünstig ausgewählt, ist die Lösung im worst-case doppelt so groß wie die Minimale. Es ist also eine gültige 2-Aproximation von \textsc{VertexCover}.
+
 \end{document}

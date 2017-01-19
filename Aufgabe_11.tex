@@ -1,0 +1,44 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newlist{arrowlist}{itemize}{1}
+\setlist[arrowlist]{label=$\Rightarrow$}
+
+\title{BuK Abgabe 11 | Gruppe 17}
+\author{Malte Meng (354529) , Charel Ernster (318949), Sebastian Witt (354738)}
+\begin{document}
+	\maketitle 
+	\section[a 11.1]{Aufgabe 11.1}
+	Zeige dass 3SAT $\leq_p$ NAESAT (Not-All-Equal-SAT):\\\\
+	\textbf{Reduktionsabbildung:}\\
+	Sei $\phi$ eine Formel in 3KNF.
+	$h$ ist die Funktion, die eine Formel in 3KNF, in folgende Form in 4KNF bringt:\\
+	Für $k_i = (x_{0} \vee x_{1} \vee x_{2})$ ist Klausel von $\phi$.\\
+	$h(\phi)$ = \{$\forall k_i \in \phi$ | $k_i$ = $(x_0 \vee x_1 \vee x_2 \vee \neg x_2')$\}.\\
+	$g$ ist die Funktion, die eine Formel in 4KNF ($\beta$), in folgende Form in 3KNF bringt:\\
+	Für $k_i' = (x_0 \vee x_1 \vee x_2 \vee \neg x_2')$ ist Klausel von $\beta$.\\
+	$g(\beta)$ = \{$\forall k_i \in \beta$ | $k_i$ = 
+	$(x_0 \vee x_1 \vee x_i') \wedge (\neg x_i' \vee x_2 \vee \neg x_2')$\}.\\
+	$f$ sei die hintereinanderausführung von $h$ und $g$.\\ 
+	$f = g \circ h$\\
+	$h$ ist in linearer Zeit berechenbar (abhängig von der Anzahl von Klauseln).\\
+	$g$ ist in linearer Zeit berechenbar (abhängig von der Anzahl von Klauseln).\\
+	$h$ linear berechenbar $\wedge$ $g$ linear berechenbar $\implies g\circ h$ linear berechenbar $\Leftrightarrow f$ ist linear berechenbar.\\\\
+	\textbf{Korrektheit:}\\
+	Zu Zeigen:\\
+	$f(\phi) \in$ NAESAT $\implies$ $\phi \in$ 3SAT\\
+	$f(\phi) \notin$ NAESAT $\implies$ $\phi \notin$ 3SAT\\\\
+	$f(\phi) \in$ NAESAT $\implies$ Es gibt eine erfüllende Belegung $\sigma$ für alle Klauseln $k$ in $f(\phi)$ und jede Klausel enthält ein wahres und ein falsches Literal. 
+	
+	
+	
+\end{document}
